@@ -141,6 +141,7 @@ button:hover {
 h1+button {
     margin: 2rem auto;
     padding: 15px 20px;
+    max-height: 46px;
 }
 
 h1+button:hover {

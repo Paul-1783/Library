@@ -64,13 +64,13 @@ function buildCard(elem) {
   libElement.appendChild(card);
 }
 
-addBookToLibrary(myLibrary, new Book("thomas", "peter", 1983, 874, true));
-addBookToLibrary(myLibrary, new Book("ghanda", "laslowz", 1983, 130, false));
-addBookToLibrary(myLibrary, new Book("hart", "kid", 18733, 453, true));
-addBookToLibrary(myLibrary, new Book("king", "klong", 7525, 123, false));
-addBookToLibrary(myLibrary, new Book("bing", "dong", 641, 887, false));
-addBookToLibrary(myLibrary, new Book("schwip", "scbwap", 874, 232, false));
-addBookToLibrary(myLibrary, new Book("klip", "klar", 111, 413, false));
+// addBookToLibrary(myLibrary, new Book("thomas", "peter", 1983, 874, true));
+// addBookToLibrary(myLibrary, new Book("ghanda", "laslowz", 1983, 130, false));
+// addBookToLibrary(myLibrary, new Book("hart", "kid", 18733, 453, true));
+// addBookToLibrary(myLibrary, new Book("king", "klong", 7525, 123, false));
+// addBookToLibrary(myLibrary, new Book("bing", "dong", 641, 887, false));
+// addBookToLibrary(myLibrary, new Book("schwip", "scbwap", 874, 232, false));
+// addBookToLibrary(myLibrary, new Book("klip", "klar", 111, 413, false));
 
 myLibrary.forEach((elem) => {
   buildCard(elem);
