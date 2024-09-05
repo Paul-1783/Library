@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="frame">
+        <h1>The Library</h1>
+        <button class="new_book">New Book</button>
+        <table class="library">
+        </table>
+
+        <div class="move_dialog_container">
+            <dialog id="newBookDialog">
+                <form method="dialog" id="dialogForm">
+                    <button id="cancel" aria-label="close" formnovalidate>X</button>
+                    <section>
+                        <p>
+                            <label for="new_book_title">Title:</label>
+                            <input type="text" class="new_book_title" required autofocus />
+                        </p>
+                        <p>
+                            <label for="new_book_author">Author:</label>
+                            <input type="text" class="new_book_author" required />
+                        </p>
+                        <p>
+                            <label for="new_book_year">Year of Publication:</label>
+                            <input type="text" class="new_book_year" required />
+                        </p>
+                        <p>
+                            <label for="new_book_pages">Pages:</label>
+                            <input type="text" class="new_book_pages" required />
+                        </p>
+                        <p>
+                            <label for="new_book_read">Read:</label>
+                            <input type="text" class="new_book_read" minlength="2" maxlength="3" pattern="^(?:[yY]es|[nN]o)$
+" />
+                        </p>
+                    </section>
+                    <menu>
+                        <button type="reset">Reset</button>
+                        <button id="submit" type="submit">Confirm</button>
+                    </menu>
+                </form>
+            </dialog>
+        </div>
+
+
+        <a href="https://everythingfonts.com" class="efbadgelink"><img
+                src="https://everythingfonts.com/branding/efff.gif" title="Powered by fonts from Everything Fonts.
+                    com" alt="Powered by fonts from everythingfonts.com" /> </a>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
