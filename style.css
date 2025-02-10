@@ -203,3 +203,88 @@ form button {
     height: 100%;
     position: relative;
 }
+
+input {
+    border-radius: 5px;
+    width: auto;
+}
+
+p {
+    position: relative;
+}
+
+input:invalid {
+    border: 2px solid red;
+}
+
+span {
+    display: block;
+}
+
+input:invalid~span::after {
+    position: absolute;
+    top: -0.1em;
+    content: "!";
+    color: red;
+
+}
+
+.new_book_title+span::after {
+    left: 15em;
+}
+
+.new_book_author+span::after {
+    left: 16.1em;
+}
+
+.new_book_year+span::after {
+    left: 23.6em;
+}
+
+.new_book_pages+span::after {
+    left: 15.8em;
+}
+
+.new_book_title:invalid+span::before {
+    content: "required";
+    padding: 0.1em 0.5em;
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+    position: absolute;
+    top: -1.6em;
+    left: 3.5em;
+}
+
+.new_book_author:invalid+span::before {
+    content: "required";
+    padding: 0.1em 0.5em;
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+    position: absolute;
+    top: -1.6em;
+    left: 4.8em;
+}
+
+.new_book_year:invalid+span::before {
+    content: "required";
+    padding: 0.1em 0.5em;
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+    position: absolute;
+    top: -1.5em;
+    right: 4.7em;
+}
+
+.new_book_pages:invalid+span::before {
+    content: "required";
+    padding: 0.1em 0.5em;
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+    position: absolute;
+    top: -1.6em;
+    left: 4.5em;
+}
