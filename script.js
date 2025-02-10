@@ -1,67 +1,69 @@
 const libElement = document.querySelector(".library");
 let myLibrary = [];
-let count = 0;
 
-function Book(title, author, year_of_publication, number_of_pages, read) {
-  // the constructor...
-  this.title = title;
-  this.author = author;
-  this.year_of_publication = year_of_publication;
-  this.number_of_pages = number_of_pages;
-  this.read = read;
-}
+class Book {
+  static count = 0;
+  constructor(title, author, year_of_publication, number_of_pages, read) {
+    // the constructor...
+    this.title = title;
+    this.author = author;
+    this.year_of_publication = year_of_publication;
+    this.number_of_pages = number_of_pages;
+    this.read = read;
+  }
 
-function haveRead(book) {
-  book.read = !book.read;
-  return book.read;
-}
+  haveRead(book) {
+    return (book.read = !book.read);
+  }
 
-function addBookToLibrary(library, book) {
-  // do stuff here
-  myLibrary.push(book);
-}
+  addBookToLibrary(library, book) {
+    // do stuff here
+    myLibrary.push(book);
+  }
 
-function buildCard(elem) {
-  const card = document.createElement("div");
-  card.classList.add("card");
-  const status = elem.read ? "yes" : "no";
-  count++;
-  card.insertAdjacentHTML(
-    "beforeend",
-    `<span class="index">${count}</span
-    ><h1 class="title"> ${elem.title}</h1>
-     <div class="author">Name of Author: <div class="spacer"></div>${elem.author}</div>
-     <div class="date_of_pub">Year of publication: <div class="spacer"></div>${elem.year_of_publication}</div>
-     <div class="number_of_pages">Pages: <div class="spacer"></div><span >${elem.number_of_pages}</span></div>
+  buildCard() {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    const status = this.read ? "yes" : "no";
+    Book.count++;
+    card.insertAdjacentHTML(
+      "beforeend",
+      `<span class="index">${Book.count}</span
+    ><h1 class="title"> ${this.title}</h1>
+     <div class="author">Name of Author: <div class="spacer"></div>${this.author}</div>
+     <div class="date_of_pub">Year of publication: <div class="spacer"></div>${this.year_of_publication}</div>
+     <div class="number_of_pages">Pages: <div class="spacer"></div><span >${this.number_of_pages}</span></div>
      <div>Already read: <div class="spacer"></div><span class="reading_status">${status}</span></div>
      <div class="buttons">
        <button class="remove">Remove</button>
        <button class="read">Read</button>
      </div>
      `
-  );
+    );
 
-  let readButton = card.querySelector(".read");
-  let removeButton = card.querySelector(".remove");
-
-  readButton.addEventListener("click", () => {
-    let index = card.querySelector(".index").textContent;
-    const readingStatus = card.querySelector(".reading_status");
-    readingStatus.textContent = haveRead(myLibrary[index - 1]) ? "yes" : "no";
-  });
-
-  removeButton.addEventListener("click", () => {
-    let index = card.querySelector(".index").textContent;
-    console.log("index: ", index);
-    myLibrary.splice(index - 1, 1);
-    card.remove();
-    let indices = libElement.querySelectorAll(".index");
-    let count2 = 0;
-    indices.forEach((index) => {
-      index.textContent = ++count2;
+    let readButton = card.querySelector(".read");
+    let removeButton = card.querySelector(".remove");
+    readButton.addEventListener("click", () => {
+      let index = card.querySelector(".index").textContent;
+      const readingStatus = card.querySelector(".reading_status");
+      readingStatus.textContent = this.haveRead(myLibrary[index - 1])
+        ? "yes"
+        : "no";
     });
-  });
-  libElement.appendChild(card);
+
+    removeButton.addEventListener("click", () => {
+      let index = card.querySelector(".index").textContent;
+      console.log("index: ", index);
+      myLibrary.splice(index - 1, 1);
+      card.remove();
+      let indices = libElement.querySelectorAll(".index");
+      let count2 = 0;
+      indices.forEach((index) => {
+        index.textContent = ++count2;
+      });
+    });
+    libElement.appendChild(card);
+  }
 }
 
 // addBookToLibrary(myLibrary, new Book("thomas", "peter", 1983, 874, true));
@@ -100,15 +102,22 @@ submitButton.addEventListener("click", (event) => {
   const new_book_pages = document.querySelector(".new_book_pages").value;
   const new_book_read = document.querySelector(".new_book_read").value;
 
-  const newEntry = new Book(
-    new_book_title,
-    new_book_author,
-    new_book_year,
-    new_book_pages,
-    new_book_read
-  );
-  myLibrary.push(newEntry);
-  buildCard(newEntry);
+  if (
+    new_book_title.length > 0 &&
+    new_book_author.length > 0 &&
+    new_book_year.length > 0 &&
+    new_book_pages.length > 0
+  ) {
+    const newEntry = new Book(
+      new_book_title,
+      new_book_author,
+      new_book_year,
+      new_book_pages,
+      new_book_read
+    );
+    myLibrary.push(newEntry);
+    newEntry.buildCard();
+  }
   dialogForm.reset();
   dialog.close();
 });
